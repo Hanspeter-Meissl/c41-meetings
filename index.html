@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Ganserl-Meeting · Club 41</title>
+<meta name="description" content="Dein persönlicher Anmeldelink für das Ganserl-Meeting mit Neuaufnahmen am 12. November 2026. Anmeldeschluss 5. November 2026.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_AT">
+<meta property="og:site_name" content="Club 41 Grieskirchen-Hausruck">
+<meta property="og:title" content="Ganserl-Meeting mit Neuaufnahmen · Club 41">
+<meta property="og:description" content="Dein persönlicher Anmeldelink für das Ganserl-Meeting am 12. November 2026. Anmeldeschluss 5. November 2026.">
+<meta property="og:url" content="https://hanspeter-meissl.github.io/c41-meetings/">
+<meta property="og:image" content="https://hanspeter-meissl.github.io/c41-meetings/bilder/vorschau.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ganserl-Meeting mit Neuaufnahmen, 12. November 2026">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+  :root {
+    --navy: #1F3864; --gold: #C0975B; --ink: #1D2733; --grau: #6B7683;
+    --linie: #DCE1E8; --hell: #F4F6F9; --warn: #9A3412; --warn-hell: #FFF4E5;
+    --rand: 16px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: #fff; color: var(--ink);
+    font: 16px/1.5 "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  }
+  main { max-width: 640px; margin: 0 auto; padding: 0 var(--rand) 40px; }
+  header { display: flex; align-items: center; gap: 12px; padding: 16px 0 12px; border-bottom: 3px solid var(--navy); }
+  header img { width: 48px; height: 48px; }
+  header .club { font-weight: 700; color: var(--navy); line-height: 1.2; }
+  header .jahr { font-size: 12px; letter-spacing: .12em; color: var(--gold); font-weight: 700; }
+  h1 { font: 400 30px/1.2 Georgia, serif; color: var(--navy); margin: 22px 0 6px; }
+  .anrede { font-size: 18px; margin: 4px 0 6px; }
+  .anrede b { color: var(--navy); }
+  .fuer { color: var(--grau); margin: 0 0 14px; font-size: 14px; }
+  .fuer b { color: var(--navy); }
+  .titelbild { width: 100%; border-radius: 6px; display: block; margin: 8px 0 14px; }
+  p { margin: 0 0 12px; }
+  .regel { background: var(--hell); border-top: 3px solid var(--gold); padding: 12px 14px; font-size: 14px; margin: 16px 0 20px; }
+  .regel p { margin: 0 0 6px; } .regel p:last-child { margin: 0; }
+
+  h2 { font: 400 24px/1.25 Georgia, serif; color: var(--navy); margin: 24px 0 6px; }
+  .wahl { display: grid; gap: 10px; margin: 10px 0 4px; }
+  .option { display: grid; grid-template-columns: 26px 1fr; gap: 2px 10px; align-items: center;
+            padding: 14px; border: 1px solid var(--linie); border-radius: 8px; cursor: pointer; background: #fff; }
+  .option input { width: 20px; height: 20px; margin: 0; accent-color: var(--navy); }
+  .option .titel { font-weight: 700; color: var(--navy); font-size: 17px; }
+  .option:has(input:checked) { border: 2px solid var(--navy); padding: 13px; background: var(--hell); }
+
+  label.feld { display: block; font-weight: 700; color: var(--navy); margin: 18px 0 6px; }
+  label.feld span { font-weight: 400; color: var(--grau); font-size: 14px; }
+  textarea { width: 100%; min-height: 70px; padding: 8px 10px; border: 1px solid var(--linie); border-radius: 6px; font: inherit; }
+
+  .hinweis { background: var(--warn-hell); color: var(--warn); padding: 10px 12px; border-radius: 6px; font-size: 14px; margin: 8px 0; }
+  [hidden] { display: none !important; }
+
+  .los { display: block; width: 100%; margin: 18px 0 8px; padding: 14px; border: 0; border-radius: 6px;
+         background: var(--navy); color: #fff; font-family: inherit; font-size: 17px; font-weight: 700; cursor: pointer; }
+  .los:disabled { background: #A9B3C1; cursor: not-allowed; }
+  .naechst { font-size: 14px; color: var(--grau); }
+  .nichts { display: inline-block; margin-top: 14px; color: var(--navy); font-size: 14px; }
+  .fuer2 { color: var(--grau); margin: 0 0 12px; font-size: 14px; }
+  .wahl-anzeige { border-top: 3px solid var(--gold); border-bottom: 1px solid var(--linie); padding: 12px 0; margin: 6px 0 12px;
+                  font-weight: 700; color: var(--navy); font-size: 17px; }
+  .bisher-zeile { background: var(--hell); border-left: 3px solid var(--navy); padding: 8px 12px; font-size: 14px; margin: 0 0 12px; }
+  .bisher-zeile a { color: var(--navy); font-weight: 700; }
+  .anm-anzeige { font-size: 14px; color: var(--grau); background: var(--hell); padding: 10px 12px; border-radius: 6px; }
+  a.zurueck { box-sizing: border-box; text-align: center; text-decoration: none; }
+  .zurueck { display: block; width: 100%; margin: 0 0 8px; padding: 13px; border: 1px solid var(--navy); border-radius: 6px;
+             background: #fff; color: var(--navy); font-family: inherit; font-size: 16px; font-weight: 600; cursor: pointer; }
+  .los.sendet { background: #A9B3C1; cursor: progress; }
+  footer { margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--linie); font-size: 13px; color: var(--grau); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="bilder/logo.jpg" alt="Wappen Club 41">
+    <div><div class="club">Club 41 Grieskirchen-Hausruck</div><div class="jahr">CLUBJAHR 2026 / 2027</div></div>
+  </header>
+
+  <h1>Ganserl-Meeting mit Neuaufnahmen</h1>
+  <p class="anrede" id="anrede" hidden></p>
+  <p class="fuer" id="fuer" hidden>Anmeldung für <b id="mitglied"></b></p>
+  <div id="einleitung">
+  <img class="titelbild" src="bilder/vorschau.jpg" alt="Ganserl-Meeting mit Neuaufnahmen, 12. November 2026">
+  <p>Am Donnerstag, 12. November 2026, um 19:30 Uhr treffen wir uns im Gasthof Hotel Zweimüller in Grieskirchen zum Ganserl-Meeting. An diesem Abend nehmen wir Gerald Nussbichler und Raimund Kröswang in den Club auf.</p>
+
+  <div class="regel">
+    <p><b>Dresscode: Black Tie.</b></p>
+    <p>Peter braucht die Zahl der Ganserl-Portionen rechtzeitig. Anmeldeschluss ist deshalb Donnerstag, 5. November 2026. Bis dahin kannst du deine Anmeldung über deinen Link ändern, es gilt die letzte. Danach melde dich bitte direkt bei Hanspeter.</p>
+  </div>
+  </div>
+
+  <section id="schritt-bisher" hidden>
+    <h2 id="bisher-titel">Deine Anmeldung</h2>
+    <p class="fuer2" id="bisher-zeit"></p>
+    <p class="wahl-anzeige" id="bisher-wahl"></p>
+    <p class="anm-anzeige" id="bisher-anm" hidden></p>
+    <div class="hinweis" id="bisher-pruefen" hidden></div>
+    <p id="bisher-text"></p>
+    <button class="los" id="bisher-aendern">Anmeldung ändern</button>
+    <a class="zurueck" id="bisher-mail" href="#" hidden>Mail an Hanspeter</a>
+  </section>
+
+  <section id="schritt-anmelden">
+  <h2>Deine Anmeldung</h2>
+  <p class="bisher-zeile" id="bisher-zeile" hidden></p>
+  <div class="wahl" role="radiogroup" aria-label="Anmeldung">
+    <label class="option"><input type="radio" name="wahl" value="ganserl">
+      <span class="titel">Ich bin gerne dabei und esse ein Ganserl</span></label>
+    <label class="option"><input type="radio" name="wahl" value="karte">
+      <span class="titel">Ich bin gerne dabei und esse à la carte</span></label>
+    <label class="option"><input type="radio" name="wahl" value="nein">
+      <span class="titel">Ich kann nicht dabei sein</span></label>
+  </div>
+
+  <label class="feld" for="anmerkung">Anmerkung <span>(freiwillig)</span></label>
+  <textarea id="anmerkung" maxlength="500" autocomplete="off"></textarea>
+
+  <button class="los" id="los" disabled>Anmeldung prüfen</button>
+  <p class="naechst">Danach siehst du deine Anmeldung noch einmal und schickst sie ab.</p>
+  </section>
+
+  <section id="schritt-pruefen" hidden>
+    <h2>Deine Anmeldung</h2>
+    <p class="fuer2" id="pruefen-fuer"></p>
+    <p class="wahl-anzeige" id="pruefen-wahl"></p>
+    <p class="anm-anzeige" id="anm-anzeige" hidden></p>
+    <button class="los" id="abschicken">Anmeldung abschicken</button>
+    <button class="zurueck" id="zurueck">Zurück zur Anmeldung</button>
+    <div class="hinweis" id="fehler" hidden></div>
+    <a class="nichts" id="ersatz" href="#" hidden>Stattdessen per Mail an Hanspeter anmelden</a>
+  </section>
+
+  <section id="schritt-danke" hidden>
+    <h2 id="danke-titel">Danke!</h2>
+    <p id="danke-text"></p>
+    <p class="wahl-anzeige" id="danke-wahl"></p>
+    <p class="naechst">Bis zum Anmeldeschluss am 5. November kannst du deinen Link noch einmal öffnen und deine Anmeldung ändern. Es gilt die letzte Anmeldung. Danach melde dich bitte direkt bei Hanspeter.</p>
+  </section>
+
+  <footer>Fragen zum Meeting beantwortet dir Hanspeter.</footer>
+</main>
+
+<script>
+  // Google-Web-App „C41 Meetinganmeldung“ (Meetinganmeldung/Google/Code.gs im Vault). MEETING ist das Datum des
+  // Meetings, unter dem die Web-App die Antwort ablegt; für ein späteres Meeting hier und im Text oben ändern.
+  // Ist GOOGLE leer oder antwortet Google nicht, bietet die Seite die Anmeldung per Mail an.
+  const GOOGLE = "https://script.google.com/macros/s/AKfycbyB5NMFBuBD8ePqbBnqKDoNW7WuccjwDbJhYee-1RQHOoqsGT7SLNZtRP4S6ddgmYAl/exec";
+  const MEETING = "2026-11-12";
+  const MAIL = "hpm@meissl-peuerbach.at";
+  // Die drei Auswahlen, Texte festgelegt von Hanspeter am 28. Oktober 2026.
+  const WAHL = {
+    ganserl: { teilnahme: 1, ganserl: "ja", text: "Ich bin gerne dabei und esse ein Ganserl" },
+    karte: { teilnahme: 1, ganserl: "nein", text: "Ich bin gerne dabei und esse à la carte" },
+    nein: { teilnahme: 0, ganserl: "", text: "Ich kann nicht dabei sein" },
+  };
+  const wahlVon = (teilnahme, ganserl) => (!teilnahme ? "nein" : ganserl === "ja" ? "ganserl" : "karte");
+
+  // Persönlicher Link: ?m=Nr.%2018%20Meissl&n=Hanspeter
+  // m ist die Kennung für die Web-App, n der Vorname für die Anrede.
+  const parameter = new URLSearchParams(location.search);
+  const mitglied = (parameter.get("m") || "").slice(0, 80);
+  const vorname = (parameter.get("n") || "").slice(0, 40);
+  if (vorname) {
+    const anrede = document.getElementById("anrede");
+    anrede.append("Lieber ", Object.assign(document.createElement("b"), { textContent: vorname }),
+                  ", hier kannst du dich für unser Ganserl-Meeting anmelden.");
+    anrede.hidden = false;
+  }
+  // Angezeigt wird der Name „Herbert Straßl“, die Kennung „Nr. 28 Straßl“ geht nur an die Web-App.
+  const anzeigename = `${vorname} ${mitglied.replace(/^Nr\.?\s*\d+\s+/, "")}`.trim();
+  if (mitglied) {
+    document.getElementById("mitglied").textContent = anzeigename;
+    document.getElementById("fuer").hidden = false;
+  }
+
+  const optionen = [...document.querySelectorAll('input[name="wahl"]')];
+  const anmerkung = document.getElementById("anmerkung");
+  const gewaehlt = () => (optionen.find(o => o.checked) || {}).value || "";
+  const setzen = w => optionen.forEach(o => { o.checked = o.value === w; });
+
+  function rechnen() {
+    document.getElementById("los").disabled = !gewaehlt();
+  }
+  // Was das Mitglied selbst anklickt, lässt die geladene Anmeldung nicht mehr darüberlegen.
+  let angefasst = false;
+  optionen.forEach(o => { o.onchange = () => { angefasst = true; rechnen(); }; });
+
+  // Die Auswahl für die Rückkehr mit der Zurück-Taste merken.
+  const MERKER = "meeting-anmeldung";
+  function merken(e) {
+    try { sessionStorage.setItem(MERKER, JSON.stringify({ mitglied, meeting: MEETING, ...e })); } catch (x) {}
+  }
+  function wiederherstellen() {
+    try {
+      const g = JSON.parse(sessionStorage.getItem(MERKER) || "null");
+      if (!g || g.mitglied !== mitglied || g.meeting !== MEETING) return;
+      angefasst = true;
+      setzen(g.wahl);
+      anmerkung.value = g.anmerkung || "";
+    } catch (x) {}
+  }
+
+  const schritte = ["schritt-bisher", "schritt-anmelden", "schritt-pruefen", "schritt-danke"];
+  let schritt = "schritt-anmelden";
+  function zeige(id) {
+    schritt = id;
+    schritte.forEach(s => { document.getElementById(s).hidden = s !== id; });
+    // Bild und Regeln nur beim Anmelden, damit Prüfung und Dank oben stehen.
+    document.getElementById("einleitung").hidden = id !== "schritt-anmelden";
+    window.scrollTo(0, 0);
+  }
+
+  let entwurf = null;  // die Anmeldung, die gerade geprüft wird
+  function pruefen() {
+    const wahl = gewaehlt();
+    if (!wahl) return;
+    entwurf = { wahl, anmerkung: anmerkung.value.trim() };
+    merken(entwurf);
+    document.getElementById("pruefen-fuer").textContent = mitglied ? `für ${anzeigename}` : "";
+    document.getElementById("pruefen-wahl").textContent = WAHL[wahl].text;
+    const anm = document.getElementById("anm-anzeige");
+    anm.hidden = !entwurf.anmerkung;
+    anm.textContent = entwurf.anmerkung ? `Anmerkung: ${entwurf.anmerkung}` : "";
+    const knopf = document.getElementById("abschicken");
+    knopf.textContent = wahl === "nein" ? "Absage abschicken" : "Anmeldung abschicken";
+    knopf.disabled = false;
+    knopf.classList.remove("sendet");
+    document.getElementById("fehler").hidden = true;
+    document.getElementById("ersatz").hidden = true;
+    zeige("schritt-pruefen");
+    if (!mitglied) fehlschlag("Diese Seite wurde ohne deinen persönlichen Link geöffnet. Bitte nimm den Link aus deiner Nachricht oder melde dich per Mail bei Hanspeter an.");
+    else if (!GOOGLE) fehlschlag("Die Anmeldung über diese Seite ist gerade nicht möglich. Bitte melde dich per Mail bei Hanspeter an.");
+  }
+
+  function fehlschlag(text) {
+    const f = document.getElementById("fehler");
+    f.textContent = text;
+    f.hidden = false;
+    document.getElementById("ersatz").hidden = false;
+    const knopf = document.getElementById("abschicken");
+    knopf.disabled = !mitglied || !GOOGLE;
+    knopf.classList.remove("sendet");
+    if (mitglied && GOOGLE) knopf.textContent = "Noch einmal versuchen";
+  }
+
+  async function abschicken() {
+    const knopf = document.getElementById("abschicken");
+    if (knopf.disabled || !entwurf) return;
+    knopf.disabled = true;  // Sperre gleich am Klick, damit nichts doppelt ankommt
+    knopf.classList.add("sendet");
+    knopf.textContent = "Wird gesendet …";
+    document.getElementById("fehler").hidden = true;
+    const w = WAHL[entwurf.wahl];
+    const daten = { mitglied, meeting: MEETING, teilnahme: w.teilnahme, ganserl: w.ganserl, anmerkung: entwurf.anmerkung };
+    const abbruch = new AbortController();
+    const uhr = setTimeout(() => abbruch.abort(), 25000);
+    try {
+      // Ohne eigenen Content-Type geht die Anfrage als einfacher Text, ohne Vorabfrage des Browsers.
+      const antwort = await fetch(GOOGLE, { method: "POST", body: JSON.stringify(daten), signal: abbruch.signal });
+      const ergebnis = await antwort.json();
+      if (!ergebnis.ok) throw new Error(ergebnis.fehler || "abgelehnt");
+      danke(entwurf);
+    } catch (e) {
+      // Seite vor dem Anmeldeschluss geöffnet, danach abgeschickt: die Web-App lehnt ab.
+      if (e.message === "Anmeldeschluss vorbei") {
+        fehlschlag("Der Anmeldeschluss ist vorbei. Änderungen bitte direkt bei Hanspeter.");
+        document.getElementById("abschicken").disabled = true;
+      } else {
+        fehlschlag("Die Anmeldung ist nicht angekommen. Bitte versuche es noch einmal oder melde dich per Mail bei Hanspeter an.");
+      }
+    } finally {
+      clearTimeout(uhr);
+    }
+  }
+
+  // Die geltende Anmeldung von der Web-App, damit der persönliche Link sie zeigt und zum Ändern vorbelegt.
+  let gesendet = false;
+  const MONATE = ["Jänner", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober",
+                  "November", "Dezember"];
+  const datumText = t => {
+    const m = String(t || "").match(/^(\d{4})-(\d{2})-(\d{2})/);
+    return m ? `${Number(m[3])}. ${MONATE[Number(m[2]) - 1]} ${m[1]}` : "";
+  };
+  const zeitText = t => {
+    const m = String(t || "").match(/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})/);
+    return m ? `${m[3]}.${m[2]}.${m[1]} um ${m[4]}:${m[5]}` : "";
+  };
+  function zeileSetzen(inhalt) {
+    const z = document.getElementById("bisher-zeile");
+    z.replaceChildren(...(Array.isArray(inhalt) ? inhalt : [inhalt]));
+    z.hidden = !inhalt;
+  }
+
+  // Nach dem Anmeldeschluss (die Web-App meldet „offen: false“) nur noch ansehen, ohne Knopf zum Ändern.
+  // Wer nie geantwortet hat, sieht dann statt des Formulars nur den Hinweis und „Mail an Hanspeter“.
+  function bisherZeigen(b) {
+    const dabei = b.status === "angemeldet", pruefen = b.status === "prüfen", absage = b.status === "nicht dabei";
+    const vorbei = b.offen === false;
+    const ohne = !dabei && !pruefen && !absage;
+    const zeit = zeitText(b.zeit);
+    document.getElementById("bisher-titel").textContent = ohne ? "Anmeldeschluss vorbei"
+      : absage ? "Diesmal nicht dabei" : "Deine Anmeldung";
+    document.getElementById("bisher-zeit").textContent = zeit ? `${absage ? "Vermerkt" : "Angemeldet"} am ${zeit}` : "";
+    const wahl = document.getElementById("bisher-wahl");
+    wahl.hidden = pruefen || ohne;
+    wahl.textContent = dabei || absage ? WAHL[wahlVon(dabei ? 1 : 0, b.ganserl)].text : "";
+    const anm = document.getElementById("bisher-anm");
+    anm.hidden = !b.anmerkung;
+    anm.textContent = b.anmerkung ? `Anmerkung: ${b.anmerkung}` : "";
+    const hinweis = document.getElementById("bisher-pruefen");
+    hinweis.hidden = !pruefen;
+    hinweis.textContent = "Deine Anmeldung ist eingegangen, muss aber noch geklärt werden. Hanspeter meldet sich bei dir.";
+    const schluss = datumText(b.schluss);
+    document.getElementById("bisher-text").textContent = vorbei
+      ? (ohne ? `Der Anmeldeschluss war am ${schluss}. Wenn du noch dabei sein möchtest, melde dich bitte direkt bei Hanspeter.`
+              : `Der Anmeldeschluss war am ${schluss}. Änderungen bitte direkt bei Hanspeter.`)
+      : "Wenn sich nichts ändert, musst du nichts tun. Bis zum Anmeldeschluss am 5. November kannst du deine Anmeldung ändern, es gilt die letzte.";
+    const knopf = document.getElementById("bisher-aendern");
+    knopf.textContent = dabei ? "Anmeldung ändern" : absage ? "Doch dabei sein" : "Neu anmelden";
+    knopf.onclick = () => {
+      // Ändern beginnt bei der geltenden Anmeldung, „Doch dabei sein“ und „Neu anmelden“ bei einer leeren Auswahl.
+      setzen(dabei ? wahlVon(1, b.ganserl) : "");
+      if (dabei) anmerkung.value = b.anmerkung || "";
+      angefasst = true;
+      rechnen();
+      zeige("schritt-anmelden");
+    };
+    knopf.hidden = vorbei;
+    const mail = document.getElementById("bisher-mail");
+    mail.hidden = !vorbei;
+    mail.href = `mailto:${MAIL}?subject=${encodeURIComponent("Ganserl-Meeting: Änderung nach dem Anmeldeschluss")}`
+      + `&body=${encodeURIComponent(`Hallo Hanspeter,\n\n\n\n${mitglied}`)}`;
+    zeige("schritt-bisher");
+  }
+
+  async function bisherLaden() {
+    if (!GOOGLE || !mitglied) return;
+    zeileSetzen("Deine bisherige Anmeldung wird geladen …");
+    const abbruch = new AbortController();
+    const uhr = setTimeout(() => abbruch.abort(), 20000);
+    try {
+      const antwort = await fetch(`${GOOGLE}?anmeldung=${encodeURIComponent(mitglied)}&meeting=${MEETING}`, { signal: abbruch.signal });
+      const b = await antwort.json();
+      if (gesendet || !b.ok) return zeileSetzen("");
+      if (b.offen === false) {
+        zeileSetzen("");
+        return bisherZeigen(b);
+      }
+      if (!["angemeldet", "nicht dabei", "prüfen"].includes(b.status)) return zeileSetzen("");
+      const link = Object.assign(document.createElement("a"), { href: "#", textContent: "Ansehen" });
+      link.onclick = e => { e.preventDefault(); bisherZeigen(b); };
+      const zeit = zeitText(b.zeit);
+      const am = zeit ? "am " + zeit.replace(" um ", ", ") + " " : "";
+      zeileSetzen([b.status === "nicht dabei" ? `Du hast ${am}vermerkt, dass du nicht dabei sein kannst. `
+                                              : `Du hast dich ${am}bereits angemeldet. `, link]);
+      if (!angefasst && schritt === "schritt-anmelden") bisherZeigen(b);
+    } catch (e) {
+      zeileSetzen("");
+    } finally {
+      clearTimeout(uhr);
+    }
+  }
+
+  function danke(e) {
+    gesendet = true;
+    // Abgeschickt ist abgeschickt: Beim nächsten Öffnen zeigt die Seite die Anmeldung von der Web-App.
+    try { sessionStorage.removeItem(MERKER); } catch (x) {}
+    document.getElementById("danke-titel").textContent = vorname ? `Danke, ${vorname}!` : "Danke!";
+    document.getElementById("danke-text").textContent = e.wahl === "nein"
+      ? "Wir haben vermerkt, dass du nicht dabei sein kannst."
+      : "Deine Anmeldung zum Ganserl-Meeting ist eingegangen. Wir freuen uns auf dich.";
+    document.getElementById("danke-wahl").textContent = WAHL[e.wahl].text;
+    zeige("schritt-danke");
+  }
+
+  function ersatzmail(e) {
+    e.preventDefault();
+    if (!entwurf) return;
+    const text = [`Hallo Hanspeter,`, ``, `meine Anmeldung zum Ganserl-Meeting am 12. November:`, WAHL[entwurf.wahl].text,
+                  entwurf.anmerkung ? `Anmerkung: ${entwurf.anmerkung}` : "", ``, mitglied]
+      .filter((z, i, a) => z !== "" || a[i - 1] !== "").join("\n");
+    location.href = `mailto:${MAIL}?subject=${encodeURIComponent("Anmeldung Ganserl-Meeting")}&body=${encodeURIComponent(text)}`;
+  }
+
+  document.getElementById("los").onclick = pruefen;
+  document.getElementById("abschicken").onclick = abschicken;
+  document.getElementById("zurueck").onclick = () => zeige("schritt-anmelden");
+  document.getElementById("ersatz").onclick = ersatzmail;
+  wiederherstellen();
+  rechnen();
+  bisherLaden();
+  // Rückkehr aus dem Zwischenspeicher des Browsers: Merker einsetzen und neu rechnen.
+  window.addEventListener("pageshow", () => { wiederherstellen(); rechnen(); });
+</script>
+</body>
+</html>
