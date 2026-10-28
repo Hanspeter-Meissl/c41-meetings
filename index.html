@@ -87,7 +87,7 @@
   <p class="anrede" id="anrede" hidden></p>
   <p class="fuer" id="fuer" hidden>Anmeldung für <b id="mitglied"></b></p>
   <div id="einleitung">
-  <img class="titelbild" src="bilder/vorschau.jpg" alt="Ganserl-Meeting mit Neuaufnahmen, 12. November 2026">
+  <a href="#schritt-anmelden" id="bild-link"><img class="titelbild" src="bilder/vorschau.jpg" alt="Ganserl-Meeting mit Neuaufnahmen, 12. November 2026. Jetzt anmelden"></a>
   <p>Am Donnerstag, 12. November 2026, um 19:30 Uhr treffen wir uns im Gasthof Hotel Zweimüller in Grieskirchen zum Ganserl-Meeting. An diesem Abend nehmen wir Gerald Nussbichler und Raimund Kröswang in den Club auf.</p>
 
   <div class="regel">
@@ -389,6 +389,11 @@
     location.href = `mailto:${MAIL}?subject=${encodeURIComponent("Anmeldung Ganserl-Meeting")}&body=${encodeURIComponent(text)}`;
   }
 
+  // Das Bild trägt den Knopf „Jetzt anmelden“; ein Klick darauf springt zur Auswahl.
+  document.getElementById("bild-link").onclick = e => {
+    e.preventDefault();
+    document.getElementById("schritt-anmelden").scrollIntoView({ behavior: "smooth" });
+  };
   document.getElementById("los").onclick = pruefen;
   document.getElementById("abschicken").onclick = abschicken;
   document.getElementById("zurueck").onclick = () => zeige("schritt-anmelden");
