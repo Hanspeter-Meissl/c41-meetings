@@ -190,7 +190,7 @@
   const mitglied = (parameter.get("m") || "").slice(0, 80);
   const vorname = (parameter.get("n") || "").slice(0, 40);
   // Mit „t“ öffnet die Seite genau dieses Meeting (seit 1. November 2026, Link aus der Club-41-App, wenn mehrere
-  // Meetings zugleich laufen). Ohne „t“, oder wenn es das Meeting nicht mehr gibt, das Meeting, das gerade läuft.
+  // Meetings zugleich laufen). Ohne „t“ das Meeting, das gerade läuft; ein unbekanntes „t“ zeigt einen Hinweis.
   const termin = /^\d{4}-\d{2}-\d{2}$/.test(parameter.get("t") || "") ? parameter.get("t") : "";
   // Angezeigt wird der Name „Herbert Straßl“, die Kennung „Nr. 28 Straßl“ geht nur an die Web-App.
   const anzeigename = `${vorname} ${mitglied.replace(/^Nr\.?\s*\d+\s+/, "")}`.trim();
@@ -423,8 +423,13 @@
     try {
       const frage = async t => (await fetch(`${GOOGLE}?anmeldung=${encodeURIComponent(mitglied)}${t ? "&meeting=" + t : ""}`,
                                             { signal: abbruch.signal })).json();
-      let b = await frage(termin);
-      if (termin && !b.ok && b.fehler === "Kein Meeting mit Anmeldung") b = await frage("");
+      const b = await frage(termin);
+      // Ein Meeting aus dem Link, das die Web-App nicht kennt, ist gelöscht oder verschoben. Dann kein anderes
+      // Formular zeigen, sonst meldet sich jemand zum falschen Meeting an (Hanspeter, 1. November 2026).
+      if (termin && !b.ok && b.fehler === "Kein Meeting mit Anmeldung") {
+        return keins("Meeting nicht gefunden",
+                     "Dieses Meeting gibt es so nicht mehr. Bitte öffne die Club-41-App neu und tippe dort auf „Zu meiner Anmeldung“.");
+      }
       if (!b.ok && b.fehler === "Kein Meeting mit Anmeldung") {
         const n = b.naechstes;
         return keins("Gerade keine Anmeldung offen", n
