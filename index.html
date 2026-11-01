@@ -189,6 +189,9 @@
   const parameter = new URLSearchParams(location.search);
   const mitglied = (parameter.get("m") || "").slice(0, 80);
   const vorname = (parameter.get("n") || "").slice(0, 40);
+  // Mit „t“ öffnet die Seite genau dieses Meeting (seit 1. November 2026, Link aus der Club-41-App, wenn mehrere
+  // Meetings zugleich laufen). Ohne „t“, oder wenn es das Meeting nicht mehr gibt, das Meeting, das gerade läuft.
+  const termin = /^\d{4}-\d{2}-\d{2}$/.test(parameter.get("t") || "") ? parameter.get("t") : "";
   // Angezeigt wird der Name „Herbert Straßl“, die Kennung „Nr. 28 Straßl“ geht nur an die Web-App.
   const anzeigename = `${vorname} ${mitglied.replace(/^Nr\.?\s*\d+\s+/, "")}`.trim();
   if (mitglied) {
@@ -408,7 +411,7 @@
     document.documentElement.classList.remove("laedt");
   }
 
-  // Ohne Angabe nennt die Web-App das Meeting, dessen Anmeldung gerade läuft, samt der Anmeldung dieses Mitglieds.
+  // Die Web-App nennt das Meeting aus „t“, ohne Angabe das, dessen Anmeldung gerade läuft, samt der Anmeldung dieses Mitglieds.
   async function laden() {
     if (!mitglied) {
       geladen();
@@ -418,8 +421,10 @@
     const abbruch = new AbortController();
     const uhr = setTimeout(() => abbruch.abort(), 20000);
     try {
-      const antwort = await fetch(`${GOOGLE}?anmeldung=${encodeURIComponent(mitglied)}`, { signal: abbruch.signal });
-      const b = await antwort.json();
+      const frage = async t => (await fetch(`${GOOGLE}?anmeldung=${encodeURIComponent(mitglied)}${t ? "&meeting=" + t : ""}`,
+                                            { signal: abbruch.signal })).json();
+      let b = await frage(termin);
+      if (termin && !b.ok && b.fehler === "Kein Meeting mit Anmeldung") b = await frage("");
       if (!b.ok && b.fehler === "Kein Meeting mit Anmeldung") {
         const n = b.naechstes;
         return keins("Gerade keine Anmeldung offen", n
