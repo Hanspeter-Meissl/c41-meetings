@@ -1,6 +1,6 @@
 # Meetinganmeldung, Club 41
 
-Anmeldung der Mitglieder des Club 41 Grieskirchen-Hausruck zu einem Meeting, zuerst zum Ganserl-Meeting mit
+Anmeldung der Mitglieder des Club 41 Grieskirchen zu einem Meeting, zuerst zum Ganserl-Meeting mit
 Neuaufnahmen am 12. November 2026. Veröffentlicht über GitHub Pages, gebaut nach dem Muster von `c41-filzmoos`.
 
 Das Mitglied wählt „Ich bin gerne dabei und esse ein Ganserl“, „Ich bin gerne dabei und esse à la carte“ oder
