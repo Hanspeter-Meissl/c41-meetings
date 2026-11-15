@@ -9,6 +9,30 @@
 <!-- Seit 29. Oktober 2026 kommt jedes Mitglied über die Club-41-App hierher, nicht mehr über einen Link per WhatsApp.
      Die Vorschau für WhatsApp (og:image) entfällt deshalb. Titel, Termin, Ort und Auswahl holt die Seite von der
      Web-App; für ein neues Meeting ändert sich hier nichts. -->
+<script>
+  // Weiterleitung in die Club-41-App (seit 15. November 2026, Stufe 3 der Formulare im Vault). Ab dem Meeting am Tag
+  // FORMULARE_AB läuft die Anmeldung über das Formular in der App. Ein persönlicher Link mit Meeting („t“) ab diesem Tag
+  // führt zum Formular dieses Meetings für dieses Mitglied, ein Link ohne „t“ ab der Freigabe des ersten solchen
+  // Meetings in die App. Den Clubschlüssel kennt diese Seite nicht: Die Einstiegsseite nimmt den, den sich das Gerät
+  // gemerkt hat, und zeigt sonst ihren Hinweis. Leer heißt keine Weiterleitung. Gleich setzen mit
+  // FORMULAR_MEETINGS_AB in „C41 Clubseite abgleichen.py“; die Testseite übernimmt den Tag der Testumgebung von dort.
+  const FORMULARE_AB = "";
+  const CLUBSEITE = "https://hanspeter-meissl.github.io/c41-clubseite/";
+  // Nur auf der Seite bei GitHub, nicht in der Vorschau der Gestaltung (Rahmen ohne eigene Adresse). Die Parameter
+  // kommen aus der ganzen Adresse, weil die Vorschau genau die zwei Stellen umbaut, die das Mitglied lesen, und
+  // sonst keinen Zugriff auf die Adresse duldet (Prüfskript der Clubseite).
+  (() => {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(FORMULARE_AB) || location.hostname !== "hanspeter-meissl.github.io") return;
+    const p = new URL(location.href).searchParams;
+    const t = /^\d{4}-\d{2}-\d{2}$/.test(p.get("t") || "") ? p.get("t") : "";
+    const m = /^Nr\. \d{1,4} [^<>&#]{1,40}$/.test(p.get("m") || "") ? p.get("m") : "";
+    const tag = d => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+    const ab = new Date(FORMULARE_AB + "T00:00:00");
+    ab.setDate(ab.getDate() - 14);
+    if (t && t >= FORMULARE_AB) location.replace(CLUBSEITE + "#&f=meeting-" + t + (m ? "&m=" + encodeURIComponent(m) : ""));
+    else if (!t && tag(new Date()) >= tag(ab)) location.replace(CLUBSEITE);
+  })();
+</script>
 <style>
   :root {
     --navy: #1F3864; --gold: #C0975B; --ink: #1D2733; --grau: #6B7683;
